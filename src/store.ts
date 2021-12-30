@@ -1,6 +1,6 @@
 import create from "zustand";
 
-const maxLength: number = 100;
+const maxLength: number = 60;
 const minLength: number = 1;
 
 interface PomodoroState {
