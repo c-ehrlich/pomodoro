@@ -10,9 +10,10 @@ interface Props {
 const SetDurationUI = (props: Props) => {
   return (
     <div>
-      unit: {props.unit}, value: {props.value}
-      <button onClick={props.increment}>+</button>
-      <button onClick={props.decrement}>-</button>
+      <div id={`${props.unit}-label`}>{props.unit} length</div>
+      <div id={`${props.unit}-length`}>{props.value}</div>
+      <button id={`${props.unit}-increment`} onClick={props.increment}>+</button>
+      <button id={`${props.unit}-decrement`} onClick={props.decrement}>-</button>
     </div>
   )
 }

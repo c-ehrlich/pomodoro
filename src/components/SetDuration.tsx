@@ -2,7 +2,7 @@ import React from "react";
 import SetDurationUI from "./SetDurationUI";
 import useStore from "../store";
 
-const SetDurationLogic = () => {
+const SetDuration = () => {
   const sessionLength = useStore((state) => state.sessionLength);
   const sessionIncrement = useStore((state) => state.sessionIncrement);
   const sessionDecrement = useStore((state) => state.sessionDecrement);
@@ -13,13 +13,13 @@ const SetDurationLogic = () => {
   return (
     <>
       <SetDurationUI
-        unit="Session"
+        unit="session"
         value={sessionLength}
         increment={sessionIncrement}
         decrement={sessionDecrement}
       />
       <SetDurationUI
-        unit="Break"
+        unit="break"
         value={breakLength}
         increment={breakIncrement}
         decrement={breakDecrement}
@@ -28,4 +28,4 @@ const SetDurationLogic = () => {
   );
 };
 
-export default SetDurationLogic;
+export default SetDuration;

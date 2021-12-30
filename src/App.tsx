@@ -1,8 +1,10 @@
 import "./App.css";
 import styled from "styled-components";
 import Container from "./components/Container";
-import SetDurationUI from "./components/SetDurationUI";
 import SetDuration from "./components/SetDuration";
+import Timer from "./components/Timer";
+import ButtonRow from "./components/ButtonRow";
+import ButtonInput from "./components/ButtonInput";
 
 const StyledApp = styled.div`
   width: 100vw;
@@ -16,7 +18,12 @@ function App() {
   return (
     <StyledApp className="App">
       <Container>
+        <Timer />
         <SetDuration />
+        <ButtonRow>
+          <ButtonInput />
+          <div>hello</div>
+        </ButtonRow>
       </Container>
     </StyledApp>
   );
