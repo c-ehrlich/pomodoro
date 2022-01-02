@@ -10,11 +10,12 @@ const StyledBottomRowButton = styled.button`
 interface Props {
   icon: IconDefinition;
   onClick: () => void;
+  passdownId?: string;
 }
 
 const BottomRowButton = (props: Props) => {
   return (
-    <StyledBottomRowButton onClick={props.onClick}>
+    <StyledBottomRowButton onClick={props.onClick} id={props.passdownId}>
       <FontAwesomeIcon icon={props.icon} />
     </StyledBottomRowButton>
   )
