@@ -72,7 +72,7 @@ const Timer = (props: Props) => {
 
   return (
     <div>
-      <div id="timer-label">Session</div>
+      <div id="timer-label">{currentTimerType === "session" ? "Session" : "Break"}</div>
       <div id="time-left">{getTimeLeft}</div>
       <div>
         {now} / {endTime}
