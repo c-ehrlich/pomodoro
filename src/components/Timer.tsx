@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, useMemo } from "react";
 import useStore from "../store";
 import {
+  createTimerText,
   getRemainingTime,
 } from "../utils";
 const alarmAudio = require("../media/alarm.mp3");
@@ -33,7 +34,7 @@ const Timer = (props: Props) => {
 
   const getTimeLeft = useMemo((): string => {
     if (initial) {
-      return `${sessionLength}:00`;
+      return `${String(sessionLength).padStart(2, '0')}:00`;
     } else if (paused) {
       return `${remainingTime.minutes}:${remainingTime.seconds}`;
     }
@@ -47,7 +48,7 @@ const Timer = (props: Props) => {
       }
       toggleCurrentTimerType();
     }
-    return `${timeLeft.minutes}:${timeLeft.seconds}`;
+    return createTimerText(timeLeft);
   }, [
     initial,
     paused,

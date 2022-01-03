@@ -1,5 +1,9 @@
 import { TimeInterface } from "./interfaces";
 
+export const createTimerText = (time: TimeInterface): string => {
+  return `${String(time.minutes).padStart(2, '0')}:${String(time.seconds).padStart(2, '0')}`;
+}
+
 /**
  * @function getRemainingTime
  * Gets the remaining time of a timer.
