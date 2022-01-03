@@ -83,7 +83,13 @@ const useStore = create<PomodoroState>((set) => ({
     })),
   initial: true,
   resetState: () =>
-    set({ sessionLength: 25, breakLength: 5, paused: true, initial: true }),
+    set({
+      sessionLength: 25,
+      breakLength: 5,
+      paused: true,
+      initial: true,
+      currentTimerType: "session",
+    }),
   remainingTime: {
     minutes: 69,
     seconds: 69,
