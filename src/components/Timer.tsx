@@ -21,8 +21,8 @@ const Timer = (props: Props) => {
   const setEndTimeFromNow = useStore((state) => state.setEndTimeFromNow);
   const paused = useStore((state) => state.paused);
   const initial = useStore((state) => state.initial);
-  const nextTimerIs = useStore((state) => state.nextTimerIs);
-  const toggleNextTimerIs = useStore((state) => state.toggleNextTimerIs);
+  const currentTimerType = useStore((state) => state.currentTimerType);
+  const toggleCurrentTimerType = useStore((state) => state.toggleCurrentTimerType);
   const [now, setNow] = useState<number>(0);
 
   const countdown = (): void => {
@@ -40,12 +40,12 @@ const Timer = (props: Props) => {
     }
     const timeLeft = getRemainingTime(endTime);
     if (timeLeft.minutes < 0) {
-      if (nextTimerIs === "break") {
+      if (currentTimerType === "session") {
         setEndTimeFromNow(breakLength);
       } else {
         setEndTimeFromNow(sessionLength);
       }
-      toggleNextTimerIs();
+      toggleCurrentTimerType();
     }
     return `${timeLeft.minutes}:${timeLeft.seconds}`;
   }, [
@@ -54,8 +54,8 @@ const Timer = (props: Props) => {
     endTime,
     sessionLength,
     remainingTime,
-    nextTimerIs,
-    toggleNextTimerIs,
+    currentTimerType,
+    toggleCurrentTimerType,
     setEndTimeFromNow,
     breakLength,
   ]);
