@@ -1,8 +1,6 @@
 import { useEffect, useRef, useState, useMemo } from "react";
 import useStore from "../store";
 import {
-  convertMillisecondTimeToObject,
-  convertObjectTimeToMilliseconds,
   getRemainingTime,
 } from "../utils";
 
@@ -26,7 +24,6 @@ const Timer = (props: Props) => {
   const [now, setNow] = useState<number>(0);
 
   const countdown = (): void => {
-    console.log(Date.now());
     setNow(Date.now());
     setRemainingTimeFromNumber(endTime - Date.now());
     timerRef.current = setTimeout(countdown, 1000);

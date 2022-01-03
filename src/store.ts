@@ -1,16 +1,14 @@
 import create from "zustand";
 import { TimeInterface } from "./interfaces";
-import { convertMillisecondTimeToObject, handleStartTimer } from "./utils";
+import {
+  convertMillisecondTimeToObject,
+  handleStartTimer,
+  handlePauseTimer,
+} from "./utils";
 
 const maxLength: number = 60;
 const minLength: number = 1;
 
-// TODO vars/functions
-// are we currently on session or break?
-// startNewSession
-// startNewBreak
-//   play the sound from here so that it's not repeated?
- 
 interface PomodoroState {
   sessionLength: number;
   sessionIncrement: () => void;
@@ -23,11 +21,11 @@ interface PomodoroState {
   pauseTimer: () => void;
   initial: boolean;
   remainingTime: TimeInterface;
-  setRemainingTimeFromTimeInterface: (remaining: TimeInterface) => void,
-  setRemainingTimeFromNumber: (remaining: number) => void,
+  setRemainingTimeFromTimeInterface: (remaining: TimeInterface) => void;
+  setRemainingTimeFromNumber: (remaining: number) => void;
   resetState: () => void;
   endTime: number;
-  setEndTimeFromNow: (addMinutes: number) => void,
+  setEndTimeFromNow: (addMinutes: number) => void;
   currentTimerType: string; // either "session" or "break"
   toggleCurrentTimerType: () => void;
 }
@@ -72,14 +70,16 @@ const useStore = create<PomodoroState>((set) => ({
       ...handleStartTimer({
         initial: state.initial,
         sessionLength: state.sessionLength,
-        breakLength: state.breakLength,
         remainingTime: state.remainingTime,
-      })
+      }),
     })),
   pauseTimer: () =>
     // TODO save current remaining time
     set((state) => ({
-      paused: true,
+      // paused: true,
+      ...handlePauseTimer({
+        endTime: state.endTime,
+      }),
     })),
   initial: true,
   resetState: () =>
@@ -93,24 +93,26 @@ const useStore = create<PomodoroState>((set) => ({
       remainingTime: {
         minutes: remaining.minutes,
         seconds: remaining.seconds,
-      }
-    })
+      },
+    });
   },
   setRemainingTimeFromNumber: (remaining: number) => {
     set({
-      remainingTime: {...convertMillisecondTimeToObject(remaining)}
-    })
+      remainingTime: { ...convertMillisecondTimeToObject(remaining) },
+    });
   },
   endTime: 0,
-  setEndTimeFromNow: (addMinutes: number) => set(() => ({
-    endTime: Date.now() + addMinutes * 60000,
-  })),
+  setEndTimeFromNow: (addMinutes: number) =>
+    set(() => ({
+      endTime: Date.now() + addMinutes * 60000,
+    })),
   currentTimerType: "session",
   toggleCurrentTimerType: () => {
     set((state) => ({
-      currentTimerType: state.currentTimerType === "break" ? "session" : "break",
-    }))
-  }
+      currentTimerType:
+        state.currentTimerType === "break" ? "session" : "break",
+    }));
+  },
 }));
 
 export default useStore;

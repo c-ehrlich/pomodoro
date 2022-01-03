@@ -30,7 +30,6 @@ export const minutesToMilliseconds = (minutes: number): number => {
  * @returns
  */
 export const convertMillisecondTimeToObject = (time: number): TimeInterface => {
-  console.log("time: ", time);
   return {
     minutes: Math.floor(time / 60000),
     seconds: Math.floor((time % 60000) / 1000),
@@ -52,12 +51,10 @@ export const convertObjectTimeToMilliseconds = (
 export const handleStartTimer = ({
   initial,
   sessionLength,
-  breakLength,
   remainingTime,
 }: {
   initial: boolean;
   sessionLength: number;
-  breakLength: number;
   remainingTime: TimeInterface;
 }) => {
   let endTime: number;
@@ -73,3 +70,15 @@ export const handleStartTimer = ({
     initial: false,
   }
 };
+
+export const handlePauseTimer = ({
+  endTime,
+}:{
+  endTime: number,
+}
+) => {
+  return {
+    paused: true,
+    remainingTime: convertMillisecondTimeToObject(endTime - Date.now()),
+  }
+}
