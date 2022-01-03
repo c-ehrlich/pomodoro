@@ -1,10 +1,31 @@
 import { useEffect, useRef, useMemo, useState } from "react";
+import styled from "styled-components";
 import useStore from "../store";
 import {
   createTimerText,
   getRemainingTime,
 } from "../utils";
+import "@fontsource/roboto/300.css";
+import "@fontsource/roboto/700.css";
 const alarmAudio = require("../media/alarm.mp3");
+
+const StyledTimer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+`;
+
+const TimerLabel = styled.div`
+  font-family: "Roboto";
+  font-weight: 300;
+`;
+
+const TimeLeft = styled.div`
+  font-family: "Roboto";
+  font-weight: 700;
+  font-size: 32px;
+`;
 
 const Timer = () => {
   let timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -80,11 +101,11 @@ const Timer = () => {
   }, [paused]);
 
   return (
-    <div>
-      <div id="timer-label">{currentTimerType === "session" ? "Session" : "Break"}</div>
-      <div id="time-left">{getTimeLeft}</div>
+    <StyledTimer>
+      <TimerLabel id="timer-label">{currentTimerType === "session" ? "Session" : "Break"}</TimerLabel>
+      <TimeLeft id="time-left">{getTimeLeft}</TimeLeft>
       <audio id="beep" ref={audioRef} src={alarmAudio}/>
-    </div>
+    </StyledTimer>
   );
 };
 

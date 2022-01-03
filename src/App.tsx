@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Container from "./components/Container";
 import SetDuration from "./components/SetDuration";
 import Timer from "./components/Timer";
+import Title from "./components/Title";
 import ButtonRow from "./components/ButtonRow";
 import BottomRowButton from "./components/BottomRowButton";
 import { faPause, faPlay, faRedoAlt } from "@fortawesome/free-solid-svg-icons";
@@ -32,15 +33,16 @@ function App() {
   return (
     <StyledApp className="App">
       <Container>
+        <Title />
         <Timer />
         <SetDuration />
         <ButtonRow>
           {paused ? (
-            <BottomRowButton icon={faPlay} onClick={startTimer} passdownId="start_stop" />
+            <BottomRowButton icon={faPlay} onClick={startTimer} passdownId="start_stop" label="Start" />
           ) : (
-            <BottomRowButton icon={faPause} onClick={pauseTimer} passdownId="start_stop" />
+            <BottomRowButton icon={faPause} onClick={pauseTimer} passdownId="start_stop" label="Pause" />
           )}
-          <BottomRowButton icon={faRedoAlt} onClick={resetStateFn} passdownId="reset" />
+          <BottomRowButton icon={faRedoAlt} onClick={resetStateFn} passdownId="reset" label="Reset" />
         </ButtonRow>
       </Container>
     </StyledApp>

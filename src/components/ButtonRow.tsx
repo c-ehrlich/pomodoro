@@ -8,7 +8,8 @@ interface Props {
 const StyledButtonRow = styled.div`
   display: flex;
   flex-direction: row;
-  gap: 8px;
+  gap: 16px;
+  margin-top: 8px;
 `;
 
 const ButtonRow = (props: Props) => {

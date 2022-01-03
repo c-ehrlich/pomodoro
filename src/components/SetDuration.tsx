@@ -1,6 +1,12 @@
-import React from "react";
+import styled from "styled-components";
 import SetDurationUI from "./SetDurationUI";
 import useStore from "../store";
+
+const InputRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+`;
 
 const SetDuration = () => {
   const sessionLength = useStore((state) => state.sessionLength);
@@ -11,7 +17,7 @@ const SetDuration = () => {
   const breakDecrement = useStore((state) => state.breakDecrement);
 
   return (
-    <>
+    <InputRow>
       <SetDurationUI
         unit="session"
         value={sessionLength}
@@ -24,7 +30,7 @@ const SetDuration = () => {
         increment={breakIncrement}
         decrement={breakDecrement}
       />
-    </>
+    </InputRow>
   );
 };
 
