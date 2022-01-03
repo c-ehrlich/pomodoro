@@ -1,4 +1,4 @@
-import { useEffect, useRef, useMemo } from "react";
+import { useEffect, useRef, useMemo, useState } from "react";
 import useStore from "../store";
 import {
   createTimerText,
@@ -21,6 +21,7 @@ const Timer = () => {
   const paused = useStore((state) => state.paused);
   const initial = useStore((state) => state.initial);
   const currentTimerType = useStore((state) => state.currentTimerType);
+  const [justPlayedSound, setJustPlayedSound] = useState(false);
   const toggleCurrentTimerType = useStore((state) => state.toggleCurrentTimerType);
 
   const countdown = (): void => {
@@ -35,7 +36,13 @@ const Timer = () => {
       return createTimerText(remainingTime);
     }
     const timeLeft = getRemainingTime(endTime);
-    // if (timeLeft.minutes === 0 && timeLeft.seconds === 0) {
+    if (timeLeft.minutes === 0 && timeLeft.seconds === 0) {
+      if (justPlayedSound === false) {
+        setJustPlayedSound(true);
+        audioRef.current?.play();
+        setInterval(() => setJustPlayedSound(false), 5000);
+      }
+    }
     if (timeLeft.minutes < 0) {
       audioRef.current?.play();
       if (currentTimerType === "session") {
@@ -56,6 +63,7 @@ const Timer = () => {
     toggleCurrentTimerType,
     setEndTimeFromNow,
     breakLength,
+    justPlayedSound,
   ]);
 
   useEffect(() => {
