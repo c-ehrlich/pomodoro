@@ -22,6 +22,13 @@ function App() {
   const pauseTimer = useStore((state) => state.pauseTimer);
   const paused = useStore((state) => state.paused);
 
+  const resetStateFn = () => {
+    const audio = (document.querySelector('#beep') as HTMLAudioElement);
+    audio.pause();
+    audio.currentTime = 0;
+    resetState();
+  }
+
   return (
     <StyledApp className="App">
       <Container>
@@ -33,7 +40,7 @@ function App() {
           ) : (
             <BottomRowButton icon={faPause} onClick={pauseTimer} passdownId="start_stop" />
           )}
-          <BottomRowButton icon={faRedoAlt} onClick={resetState} passdownId="reset" />
+          <BottomRowButton icon={faRedoAlt} onClick={resetStateFn} passdownId="reset" />
         </ButtonRow>
       </Container>
     </StyledApp>
