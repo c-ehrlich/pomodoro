@@ -1,6 +1,10 @@
 import { useEffect, useRef, useState, useMemo } from "react";
 import useStore from "../store";
-import { convertMillisecondTimeToObject, convertObjectTimeToMilliseconds, getRemainingTime } from "../utils";
+import {
+  convertMillisecondTimeToObject,
+  convertObjectTimeToMilliseconds,
+  getRemainingTime,
+} from "../utils";
 
 interface Props {}
 
@@ -8,11 +12,17 @@ const Timer = (props: Props) => {
   // const endTime = useStore(state => state.endTime);
   let timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const remainingTime = useStore((state) => state.remainingTime);
-  const setRemainingTimeFromNumber = useStore((state) => state.setRemainingTimeFromNumber);
+  const setRemainingTimeFromNumber = useStore(
+    (state) => state.setRemainingTimeFromNumber
+  );
   const sessionLength = useStore((state) => state.sessionLength);
+  const breakLength = useStore((state) => state.breakLength);
   const endTime = useStore((state) => state.endTime);
+  const setEndTimeFromNow = useStore((state) => state.setEndTimeFromNow);
   const paused = useStore((state) => state.paused);
   const initial = useStore((state) => state.initial);
+  const nextTimerIs = useStore((state) => state.nextTimerIs);
+  const toggleNextTimerIs = useStore((state) => state.toggleNextTimerIs);
   const [now, setNow] = useState<number>(0);
 
   const countdown = (): void => {
@@ -29,8 +39,26 @@ const Timer = (props: Props) => {
       return `${remainingTime.minutes}:${remainingTime.seconds}`;
     }
     const timeLeft = getRemainingTime(endTime);
+    if (timeLeft.minutes < 0) {
+      if (nextTimerIs === "break") {
+        setEndTimeFromNow(breakLength);
+      } else {
+        setEndTimeFromNow(sessionLength);
+      }
+      toggleNextTimerIs();
+    }
     return `${timeLeft.minutes}:${timeLeft.seconds}`;
-  }, [initial, paused, endTime, sessionLength, remainingTime]);
+  }, [
+    initial,
+    paused,
+    endTime,
+    sessionLength,
+    remainingTime,
+    nextTimerIs,
+    toggleNextTimerIs,
+    setEndTimeFromNow,
+    breakLength,
+  ]);
 
   useEffect(() => {
     if (paused) {
@@ -49,7 +77,9 @@ const Timer = (props: Props) => {
     <div>
       <div id="timer-label">Session</div>
       <div id="time-left">{getTimeLeft}</div>
-      <div>{now} / {endTime}</div>
+      <div>
+        {now} / {endTime}
+      </div>
     </div>
   );
 };

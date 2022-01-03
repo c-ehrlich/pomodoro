@@ -27,6 +27,9 @@ interface PomodoroState {
   setRemainingTimeFromNumber: (remaining: number) => void,
   resetState: () => void;
   endTime: number;
+  setEndTimeFromNow: (addMinutes: number) => void,
+  nextTimerIs: string; // either "session" or "break"
+  toggleNextTimerIs: () => void;
 }
 
 const useStore = create<PomodoroState>((set) => ({
@@ -99,6 +102,15 @@ const useStore = create<PomodoroState>((set) => ({
     })
   },
   endTime: 0,
+  setEndTimeFromNow: (addMinutes: number) => set(() => ({
+    endTime: Date.now() + addMinutes * 60000,
+  })),
+  nextTimerIs: "break",
+  toggleNextTimerIs: () => {
+    set((state) => ({
+      nextTimerIs: state.nextTimerIs === "break" ? "session" : "break",
+    }))
+  }
 }));
 
 export default useStore;
