@@ -6,9 +6,7 @@ import {
 } from "../utils";
 const alarmAudio = require("../media/alarm.mp3");
 
-interface Props {}
-
-const Timer = (props: Props) => {
+const Timer = () => {
   let timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   let audioRef = useRef<HTMLAudioElement>(null);
 
@@ -24,21 +22,20 @@ const Timer = (props: Props) => {
   const initial = useStore((state) => state.initial);
   const currentTimerType = useStore((state) => state.currentTimerType);
   const toggleCurrentTimerType = useStore((state) => state.toggleCurrentTimerType);
-  const [now, setNow] = useState<number>(0);
 
   const countdown = (): void => {
-    setNow(Date.now());
     setRemainingTimeFromNumber(endTime - Date.now());
-    timerRef.current = setTimeout(countdown, 1000);
+    timerRef.current = setTimeout(countdown, 100);
   };
 
   const getTimeLeft = useMemo((): string => {
     if (initial) {
       return `${String(sessionLength).padStart(2, '0')}:00`;
     } else if (paused) {
-      return `${remainingTime.minutes}:${remainingTime.seconds}`;
+      return createTimerText(remainingTime);
     }
     const timeLeft = getRemainingTime(endTime);
+    // if (timeLeft.minutes === 0 && timeLeft.seconds === 0) {
     if (timeLeft.minutes < 0) {
       audioRef.current?.play();
       if (currentTimerType === "session") {
@@ -65,7 +62,7 @@ const Timer = (props: Props) => {
     if (paused) {
       clearTimeout(timerRef.current as ReturnType<typeof setTimeout>);
     } else {
-      timerRef.current = setTimeout(countdown, 1000);
+      timerRef.current = setTimeout(countdown, 100);
     }
 
     return () => {
@@ -78,9 +75,6 @@ const Timer = (props: Props) => {
     <div>
       <div id="timer-label">{currentTimerType === "session" ? "Session" : "Break"}</div>
       <div id="time-left">{getTimeLeft}</div>
-      <div>
-        {now} / {endTime}
-      </div>
       <audio id="beep" ref={audioRef} src={alarmAudio}/>
     </div>
   );

@@ -110,7 +110,7 @@ const useStore = create<PomodoroState>((set) => ({
   endTime: 0,
   setEndTimeFromNow: (addMinutes: number) =>
     set(() => ({
-      endTime: Date.now() + addMinutes * 60000,
+      endTime: Date.now() + addMinutes * 60000 + 999, // we use floor
     })),
   currentTimerType: "session",
   toggleCurrentTimerType: () => {
