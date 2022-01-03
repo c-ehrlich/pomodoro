@@ -63,7 +63,7 @@ export const handleStartTimer = ({
 }) => {
   let endTime: number;
   if (initial) {
-    endTime = Date.now() + minutesToMilliseconds(sessionLength);
+    endTime = Date.now() + minutesToMilliseconds(sessionLength) + 999;
   } else {
     endTime = Date.now() + convertObjectTimeToMilliseconds(remainingTime);
   }
