@@ -3,12 +3,14 @@ import useStore from "../store";
 import {
   getRemainingTime,
 } from "../utils";
+const alarmAudio = require("../media/alarm.mp3");
 
 interface Props {}
 
 const Timer = (props: Props) => {
-  // const endTime = useStore(state => state.endTime);
   let timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  let audioRef = useRef<HTMLAudioElement>(null);
+
   const remainingTime = useStore((state) => state.remainingTime);
   const setRemainingTimeFromNumber = useStore(
     (state) => state.setRemainingTimeFromNumber
@@ -37,6 +39,7 @@ const Timer = (props: Props) => {
     }
     const timeLeft = getRemainingTime(endTime);
     if (timeLeft.minutes < 0) {
+      audioRef.current?.play();
       if (currentTimerType === "session") {
         setEndTimeFromNow(breakLength);
       } else {
@@ -77,6 +80,7 @@ const Timer = (props: Props) => {
       <div>
         {now} / {endTime}
       </div>
+      <audio id="beep" ref={audioRef} src={alarmAudio}/>
     </div>
   );
 };
