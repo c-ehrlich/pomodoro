@@ -15,6 +15,7 @@ const StyledApp = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: rgba(178, 194, 209);
 `;
 
 function App() {
