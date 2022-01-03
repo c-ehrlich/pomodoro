@@ -1,14 +1,30 @@
 {
   "files": {
-    "main.css": "/pomodoro/static/css/main.8a685450.css",
-    "main.js": "/pomodoro/static/js/main.864962f2.js",
+    "main.css": "/pomodoro/static/css/main.20ff4bad.css",
+    "main.js": "/pomodoro/static/js/main.2ec0e009.js",
+    "static/media/roboto-all-700-normal.woff": "/pomodoro/static/media/roboto-all-700-normal.ef6d1d09b20b877fee4e.woff",
+    "static/media/roboto-all-300-normal.woff": "/pomodoro/static/media/roboto-all-300-normal.8fc5f5f22c9951113696.woff",
+    "static/media/roboto-latin-700-normal.woff2": "/pomodoro/static/media/roboto-latin-700-normal.0682ca7f74351d42bf73.woff2",
+    "static/media/roboto-latin-300-normal.woff2": "/pomodoro/static/media/roboto-latin-300-normal.0109a2ace896a506a0aa.woff2",
+    "static/media/roboto-cyrillic-ext-300-normal.woff2": "/pomodoro/static/media/roboto-cyrillic-ext-300-normal.12d37040a0160a948ff1.woff2",
+    "static/media/roboto-cyrillic-ext-700-normal.woff2": "/pomodoro/static/media/roboto-cyrillic-ext-700-normal.b816cda3107bb21c87e1.woff2",
     "static/media/alarm.mp3": "/pomodoro/static/media/alarm.7ca65219a31720ceedf6.mp3",
+    "static/media/roboto-latin-ext-700-normal.woff2": "/pomodoro/static/media/roboto-latin-ext-700-normal.bcf37d666ce10b3556cd.woff2",
+    "static/media/roboto-latin-ext-300-normal.woff2": "/pomodoro/static/media/roboto-latin-ext-300-normal.a29236e0fc30e8482530.woff2",
+    "static/media/roboto-cyrillic-700-normal.woff2": "/pomodoro/static/media/roboto-cyrillic-700-normal.0334efc0de1012200889.woff2",
+    "static/media/roboto-cyrillic-300-normal.woff2": "/pomodoro/static/media/roboto-cyrillic-300-normal.48e4b37ecbc5e155460e.woff2",
+    "static/media/roboto-greek-300-normal.woff2": "/pomodoro/static/media/roboto-greek-300-normal.7c6b44c55d4d9661e3ed.woff2",
+    "static/media/roboto-greek-700-normal.woff2": "/pomodoro/static/media/roboto-greek-700-normal.3292e831b18d0c23d609.woff2",
+    "static/media/roboto-vietnamese-700-normal.woff2": "/pomodoro/static/media/roboto-vietnamese-700-normal.3096f18acebc3f07020d.woff2",
+    "static/media/roboto-vietnamese-300-normal.woff2": "/pomodoro/static/media/roboto-vietnamese-300-normal.af9afdc10c93e4118e90.woff2",
+    "static/media/roboto-greek-ext-300-normal.woff2": "/pomodoro/static/media/roboto-greek-ext-300-normal.04e05839d6a35e046c13.woff2",
+    "static/media/roboto-greek-ext-700-normal.woff2": "/pomodoro/static/media/roboto-greek-ext-700-normal.9674bc0ae12c2551d9d1.woff2",
     "index.html": "/pomodoro/index.html",
-    "main.8a685450.css.map": "/pomodoro/static/css/main.8a685450.css.map",
-    "main.864962f2.js.map": "/pomodoro/static/js/main.864962f2.js.map"
+    "main.20ff4bad.css.map": "/pomodoro/static/css/main.20ff4bad.css.map",
+    "main.2ec0e009.js.map": "/pomodoro/static/js/main.2ec0e009.js.map"
   },
   "entrypoints": [
-    "static/css/main.8a685450.css",
-    "static/js/main.864962f2.js"
+    "static/css/main.20ff4bad.css",
+    "static/js/main.2ec0e009.js"
   ]
 }
