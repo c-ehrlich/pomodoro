@@ -14,7 +14,7 @@ const StyledTitle = styled.div`
 
 const Title = () => {
   return (
-    <StyledTitle>Pomodoro Clock</StyledTitle>
+    <StyledTitle>Pomodoro Timer</StyledTitle>
   )
 }
 
