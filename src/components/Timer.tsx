@@ -14,6 +14,7 @@ const StyledTimer = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 4px;
+  color: white;
 `;
 
 const TimerLabel = styled.div`
@@ -24,7 +25,7 @@ const TimerLabel = styled.div`
 const TimeLeft = styled.div`
   font-family: "Roboto";
   font-weight: 700;
-  font-size: 32px;
+  font-size: 64px;
 `;
 
 const Timer = () => {

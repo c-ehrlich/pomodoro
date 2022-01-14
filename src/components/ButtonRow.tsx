@@ -10,6 +10,7 @@ const StyledButtonRow = styled.div`
   flex-direction: row;
   gap: 16px;
   margin-top: 8px;
+  align-items: flex-start;
 `;
 
 const ButtonRow = (props: Props) => {

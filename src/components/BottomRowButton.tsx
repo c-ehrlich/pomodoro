@@ -3,12 +3,26 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 import "@fontsource/roboto/300.css";
 
+const buttonShadow: number = 6;
+
 const StyledBottomRowButton = styled.button`
   padding: 8px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 4px;
+  background-color: white;
+  border: none;
+  border-radius: 4px;
+  box-shadow: 0px ${buttonShadow}px 0px rgb(235, 235, 235);
+  margin-bottom: ${buttonShadow}px;
+  color: rgb(218, 85, 80);
+
+  &:active {
+    margin-top: ${buttonShadow}px;
+    margin-bottom: 0;
+    box-shadow: none;
+  }
 `;
 
 const ButtonLabel = styled.div`
